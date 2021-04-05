@@ -1,0 +1,20 @@
+<mat-nav-list>
+  <a
+    mat-list-item
+    routerLinkActive="active"
+    routerLink="/"
+    (click)="onChangeActivePage()"
+  >
+    <mat-icon>home</mat-icon>
+    <div class="mat-list-text">Home</div>
+  </a>
+  <a
+    mat-list-item
+    routerLinkActive="active"
+    routerLink="myArticles"
+    (click)="onChangeActivePage()"
+  >
+    <mat-icon>account_circle</mat-icon>
+    <div class="mat-list-text">My articles</div>
+  </a>
+</mat-nav-list>

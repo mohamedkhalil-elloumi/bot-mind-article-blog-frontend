@@ -1,0 +1,16 @@
+<mat-sidenav-container class="container">
+  <mat-sidenav #sidenav mode="side" style="width: 20%; margin-top: 5%">
+    <app-navigation (changeActivePage)="changeActivePage()"></app-navigation>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header
+      *ngIf="isLoggedIn"
+      [username]="username"
+      (logout)="logout()"
+      (toggleSidenav)="toggleSidenav()"
+      (deleteAccount)="deleteAccount()"
+    ></app-header>
+    <app-loading-indicator></app-loading-indicator>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

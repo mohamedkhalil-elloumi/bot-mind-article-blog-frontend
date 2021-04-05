@@ -1,0 +1,54 @@
+<mat-toolbar>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Menu"
+    (click)="onToggleSidenav()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Botmind Article Blog / </span>
+  <span>&nbsp;</span>
+  <span> {{ username }}</span>
+  <span class="spacer"></span>
+  <button
+    [matMenuTriggerFor]="menu"
+    mat-icon-button
+    aria-label="Parameters"
+    title="Parameters"
+  >
+    <mat-icon
+      matBadgePosition="above after"
+      matBadgeSize="small"
+      matBadgeOverlap="false"
+    >
+      apps
+    </mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu" xPosition="before">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <button
+      mat-menu-item
+      aria-label="Delete accoun"
+      title="Delete accoun"
+      (click)="onDeleteAccount()"
+    >
+      <mat-icon> delete </mat-icon>
+      <span>Delete account</span>
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <button
+      mat-menu-item
+      aria-label="Logout"
+      title="Logout"
+      (click)="onLogout()"
+    >
+      <mat-icon> exit_to_app </mat-icon>
+      <span>Logout</span>
+    </button>
+  </div>
+</mat-menu>

@@ -1,0 +1,20 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill" class="full-width-input">
+    <mat-label>Publish an article</mat-label>
+    <textarea
+      matInput
+      placeholder="Publish some content..."
+      formControlName="content"
+      rows="5"
+      cols="50"
+    ></textarea>
+  </mat-form-field>
+  <mat-card-actions>
+    <div fxLayoutAlign="end">
+      <button mat-raised-button *ngIf="article" (click)="onCancel()">
+        Cancel
+      </button>
+      <button mat-raised-button color="primary">{{ buttonActionName }}</button>
+    </div>
+  </mat-card-actions>
+</form>

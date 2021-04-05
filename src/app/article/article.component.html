@@ -1,0 +1,57 @@
+<mat-card class="create-article">
+  <mat-card-content>
+    <app-create-article></app-create-article>
+  </mat-card-content>
+</mat-card>
+<div
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="loadMore()"
+>
+  <mat-card class="article-card" *ngFor="let article of articleScroll">
+    <mat-card-header>
+      <mat-card-title
+        >{{ article.user.firstName }}
+        {{ article.user.lastName }}</mat-card-title
+      >
+      <mat-card-subtitle
+        >Published on {{ article.createdAt }}</mat-card-subtitle
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <p
+        *ngIf="!editing || (editing && articleToEdit?.id !== article.id)"
+        style="white-space: pre-line"
+      >
+        {{ article.content }}
+      </p>
+      <app-create-article
+        [article]="articleToEdit"
+        *ngIf="editing && articleToEdit?.id === article.id"
+        (closeEditing)="endEdit()"
+      ></app-create-article>
+    </mat-card-content>
+    <mat-card-actions>
+      <div fxLayoutAlign="end">
+        <button
+          mat-icon-button
+          *ngIf="article.user.id === userId"
+          title="Edit article"
+          (click)="edit(article)"
+        >
+          <mat-icon>mode_edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          *ngIf="article.user.id === userId"
+          title="Delete article"
+          (click)="deleteArticle(article.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

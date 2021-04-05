@@ -1,0 +1,11 @@
+<ng-container>
+  <mat-progress-bar
+    *ngIf="$loading | async"
+    mode="indeterminate"
+  ></mat-progress-bar>
+  <mat-progress-bar
+    *ngIf="$error | async"
+    color="warn"
+    value="100"
+  ></mat-progress-bar>
+</ng-container>
