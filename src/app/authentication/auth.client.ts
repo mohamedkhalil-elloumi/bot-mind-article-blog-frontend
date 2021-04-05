@@ -3,21 +3,19 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { User } from './model/user.model';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthClient {
   private http: HttpClient;
-  private apiUrl = environment.apiUrl ;
 
   constructor(@Inject(HttpClient) http: HttpClient) {
     this.http = http;
   }
 
   login(email: string, password: string): Observable<string> {
-    const url = `${this.apiUrl}/auth/login`;
+    const url = '/auth/login';
     const body = { email, password };
     return this.http.post(url, body).pipe(
       map((data: any) => {
@@ -29,7 +27,7 @@ export class AuthClient {
   }
 
   register(user: User, password: string): Observable<string> {
-    const url = `${this.apiUrl}/auth/register`;
+    const url = '/auth/register';
     const body = {
       firstName: user.firstName,
       lastName: user.lastName,
@@ -46,7 +44,7 @@ export class AuthClient {
   }
 
   deleteUser(userId: number): Observable<string> {
-    const url = `${this.apiUrl}/auth/${userId}`;
+    const url = `/auth/${userId}`;
     return this.http.delete(url).pipe(
       map((data: any) => {
         const message: string = data.message;
