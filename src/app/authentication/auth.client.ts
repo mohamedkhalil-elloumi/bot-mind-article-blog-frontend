@@ -9,13 +9,14 @@ import { User } from './model/user.model';
 })
 export class AuthClient {
   private http: HttpClient;
+  private apiUrl = process.env.API_URL || '';
 
   constructor(@Inject(HttpClient) http: HttpClient) {
     this.http = http;
   }
 
   login(email: string, password: string): Observable<string> {
-    const url = '/auth/login';
+    const url = `${this.apiUrl}/auth/login`;
     const body = { email, password };
     return this.http.post(url, body).pipe(
       map((data: any) => {
@@ -27,7 +28,7 @@ export class AuthClient {
   }
 
   register(user: User, password: string): Observable<string> {
-    const url = '/auth/register';
+    const url = `${this.apiUrl}/auth/register`;
     const body = {
       firstName: user.firstName,
       lastName: user.lastName,
@@ -44,7 +45,7 @@ export class AuthClient {
   }
 
   deleteUser(userId: number): Observable<string> {
-    const url = `/auth/${userId}`;
+    const url = `${this.apiUrl}/auth/${userId}`;
     return this.http.delete(url).pipe(
       map((data: any) => {
         const message: string = data.message;

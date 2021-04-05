@@ -7,14 +7,15 @@ import { Article } from './model/article.model';
 
 /**
  * This is the client article that interacts
- * with the backend APIs of the articles 
+ * with the backend APIs of the articles
  */
 @Injectable({
   providedIn: 'root',
 })
 export class ArticleClient {
   private http: HttpClient;
-  private url = '/api/article';
+  private apiUrl = process.env.API_URL || '';
+  private url = `${this.apiUrl}/api/article`;
   private options = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
