@@ -37,7 +37,6 @@ export class CreateArticleComponent implements OnInit {
   }
 
   onCancel(): void {
-    console.log('Emitting...');
     this.closeEditing.emit();
   }
 

@@ -5,11 +5,7 @@ export class User {
   email: string;
 
   constructor(data: any) {
-    if (data.id) {
-      this.id = data.id;
-    } else {
-      this.id = null;
-    }
+    this.id = data.id ? data.id : null;
     this.firstName = data.firstName;
     this.lastName = data.lastName;
     this.email = data.email;

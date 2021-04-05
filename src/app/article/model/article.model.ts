@@ -14,9 +14,9 @@ export class Article {
   }
 
   formatDate(date: Date): string {
-    const day = new Date(date).getDate();
-    const month = new Date(date).toLocaleString('default', { month: 'long' });
-    const year = new Date(date).getFullYear();
+    const day = date.getDate();
+    const month = date.toLocaleString('default', { month: 'long' });
+    const year = date.getFullYear();
 
     return `${day} ${month} ${year}`;
   }

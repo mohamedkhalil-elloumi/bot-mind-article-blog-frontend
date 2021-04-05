@@ -5,6 +5,10 @@ import { map } from 'rxjs/operators';
 import { AuthService } from '../authentication/auth.service';
 import { Article } from './model/article.model';
 
+/**
+ * This is the client article that interacts
+ * with the backend APIs of the articles 
+ */
 @Injectable({
   providedIn: 'root',
 })

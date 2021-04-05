@@ -16,8 +16,8 @@ export class AuthClient {
 
   login(email: string, password: string): Observable<string> {
     const url = '/auth/login';
-    const content = { email, password };
-    return this.http.post(url, content).pipe(
+    const body = { email, password };
+    return this.http.post(url, body).pipe(
       map((data: any) => {
         const token: string = data.token;
         return token;
@@ -28,13 +28,13 @@ export class AuthClient {
 
   register(user: User, password: string): Observable<string> {
     const url = '/auth/register';
-    const content = {
+    const body = {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
       password,
     };
-    return this.http.post(url, content).pipe(
+    return this.http.post(url, body).pipe(
       map((data: any) => {
         const message: string = data.message;
         return message;

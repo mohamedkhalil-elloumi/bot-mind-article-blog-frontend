@@ -37,11 +37,18 @@ export class ArticleComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    // setup the user id
     this.authService.currentUser.subscribe((user) => {
       if (user.email) {
         this.userId = user.id as number;
       }
     });
+
+    /**
+     * if the input of user articles is true, it loads
+     * only the user articles using their Id
+     * otherwise it loads all the articles
+     */
     if (!this.userArticles) {
       this.loadArticles();
     } else {
@@ -50,7 +57,9 @@ export class ArticleComponent implements OnInit, OnDestroy {
     this.$articles = this.articleFacade.$articles;
 
     this.articleSubscription = this.$articles.subscribe((data) => {
+      // when the data is loaded, we set the articles
       this.articles = data;
+      // this array allows the load on scroll
       this.articleScroll = this.articles.slice(0, 10);
     });
   }
@@ -87,6 +96,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
     this.articleToEdit = null;
   }
 
+  //we add 10 articles each time the user scrolls down
   loadMore(): void {
     const start = this.take * this.size;
     let end = this.take * (this.size + 1);
@@ -100,10 +110,12 @@ export class ArticleComponent implements OnInit, OnDestroy {
   }
 
   async deleteArticle(articleId: number): Promise<void> {
+    //we wait until the user confirms the delete of the article
     const deleteArticle: boolean = await this.deleteDialogService.confirmDelete(
       'Are you sure to delete this article?'
     );
-
+    
+    // when the user cancel the delete, it does nothing
     if (!deleteArticle) {
       return;
     }

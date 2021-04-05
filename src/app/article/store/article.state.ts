@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
-  append,
   insertItem,
   patch,
   removeItem,
@@ -21,6 +20,7 @@ export interface ArticleStateModel {
   articles: Article[];
 }
 
+// This is the default state of the article model
 const DEFAULT_ARTICLE_STATE: ArticleStateModel = {
   articles: [],
 };
@@ -31,6 +31,7 @@ const DEFAULT_ARTICLE_STATE: ArticleStateModel = {
 })
 @Injectable()
 export class ArticleState {
+  //select the articles from the state model
   @Selector()
   static articles({ articles }: ArticleStateModel): Article[] {
     return articles;
@@ -46,7 +47,6 @@ export class ArticleState {
       const articles: Article[] = await this.articleClient
         .getArticles()
         .toPromise();
-      console.log(articles);
       setState(patch({ articles }));
     } catch (error) {
       throw new Error(error);
