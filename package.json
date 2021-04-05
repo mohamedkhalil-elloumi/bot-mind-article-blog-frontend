@@ -5,8 +5,7 @@
     "ng": "ng",
     "start": "node server.js",
     "build": "ng build --prod",
-    "lint": "ng lint",
-    "postinstall": "ng build --aot -prod"
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
