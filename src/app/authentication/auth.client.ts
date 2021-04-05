@@ -3,13 +3,14 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { User } from './model/user.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthClient {
   private http: HttpClient;
-  private apiUrl = process.env.API_URL || '';
+  private apiUrl = environment.apiUrl ;
 
   constructor(@Inject(HttpClient) http: HttpClient) {
     this.http = http;

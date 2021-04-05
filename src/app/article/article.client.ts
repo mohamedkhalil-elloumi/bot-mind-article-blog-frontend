@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { AuthService } from '../authentication/auth.service';
 import { Article } from './model/article.model';
 
@@ -14,7 +15,7 @@ import { Article } from './model/article.model';
 })
 export class ArticleClient {
   private http: HttpClient;
-  private apiUrl = process.env.API_URL || '';
+  private apiUrl = environment.apiUrl ;
   private url = `${this.apiUrl}/api/article`;
   private options = {
     headers: new HttpHeaders({
